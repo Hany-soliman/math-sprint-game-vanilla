@@ -7,15 +7,16 @@ const showCountdown = () => {
 }
 
 const countdownTimer = (value) => {
-    countdown.textContent = '3'
-    let pageCountdown = setInterval(() => {
-        countdown.textContent = value
-        if (value == 0) {
+    countdown.textContent = value
+    const pageCountdown = setInterval(() => {
+        value--
+        if (value === 0) {
             countdown.textContent = 'Go!'
-            setTimeout(showGamePage, 1000)
+        } else if (value === -1) {
+            showGamePage()
             clearInterval(pageCountdown)
         } else {
-            value--
+            countdown.textContent = value
         }
     }, 1000)
     renderGamePage()
